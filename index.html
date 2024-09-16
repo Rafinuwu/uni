@@ -12,19 +12,55 @@
         <!-- Study Routine Section -->
         <div class="study-routine">
             <h2>Study Routine</h2>
-            <textarea id="study-routine-input" placeholder="Add your study routine here..."></textarea>
+            <table id="study-routine-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                        <th>Sunday</th>
+                    </tr>
+                </thead>
+                <tbody id="routine-body">
+                    <!-- Table rows will be added by JavaScript -->
+                </tbody>
+            </table>
         </div>
 
         <!-- To-Do List Section -->
         <div class="to-do-list">
             <h2>To-Do List</h2>
-            <textarea id="to-do-list-input" placeholder="Add your tasks here..."></textarea>
+            <ul id="to-do-list">
+                <!-- List items will be added here -->
+            </ul>
+            <input type="text" id="new-task" placeholder="Add a new task">
+            <button onclick="addTask()">Add Task</button>
         </div>
 
         <!-- Class Schedule Section -->
         <div class="class-schedule">
             <h2>Class Schedule</h2>
-            <textarea id="class-schedule-input" placeholder="Add your class schedule here..."></textarea>
+            <table id="class-schedule-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                        <th>Sunday</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule-body">
+                    <!-- Table rows will be added by JavaScript -->
+                </tbody>
+            </table>
         </div>
     </div>
 
