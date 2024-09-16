@@ -1,9 +1,10 @@
 // Study Routine and Class Schedule
-const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-const times = Array(10).fill(''); // You can add times of your liking, e.g., ['8 AM', '9 AM', ...]
+const routineDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const scheduleDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+const times = Array(10).fill(''); // Add your times here, e.g., ['8 AM', '9 AM', ...]
 
 // Function to generate table rows
-function generateTableRows(tableBodyId) {
+function generateTableRows(tableBodyId, days) {
     const tbody = document.getElementById(tableBodyId);
     times.forEach((time) => {
         const row = document.createElement('tr');
@@ -13,6 +14,7 @@ function generateTableRows(tableBodyId) {
         days.forEach(() => {
             const cell = document.createElement('td');
             cell.setAttribute('contenteditable', 'true'); // Editable cells
+            cell.style.minHeight = '40px'; // Ensure each cell starts at a minimum height
             row.appendChild(cell);
         });
         tbody.appendChild(row);
@@ -20,8 +22,8 @@ function generateTableRows(tableBodyId) {
 }
 
 // Load the tables
-generateTableRows('routine-body');
-generateTableRows('schedule-body');
+generateTableRows('routine-body', routineDays);  // For study routine
+generateTableRows('schedule-body', scheduleDays); // For class schedule
 
 // To-Do List
 const toDoList = document.getElementById('to-do-list');
@@ -55,8 +57,19 @@ function addTaskElement(text, completed) {
         li.classList.toggle('completed', checkbox.checked);
         saveTasks();
     });
+
+    const taskText = document.createTextNode(text);
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', () => {
+        li.remove();
+        saveTasks();
+    });
+
     li.appendChild(checkbox);
-    li.appendChild(document.createTextNode(text));
+    li.appendChild(taskText);
+    li.appendChild(deleteButton);
     li.classList.toggle('completed', completed);
     toDoList.appendChild(li);
 }
@@ -66,7 +79,7 @@ function saveTasks() {
     const tasks = [];
     toDoList.querySelectorAll('li').forEach((li) => {
         tasks.push({
-            text: li.textContent,
+            text: li.childNodes[1].textContent, // The task text
             completed: li.classList.contains('completed')
         });
     });
