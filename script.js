@@ -97,4 +97,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Add new task button event
-  addTaskBtn
+  addTaskBtn.addEventListener('click', function () {
+    const taskText = newTaskInput.value.trim();
+    if (taskText) {
+      addTask(taskText);
+      newTaskInput.value = ''; // Clear input
+    }
+  });
+
+  // Load all saved data on page load
+  loadRoutineData();
+  loadScheduleData();
+  loadTasks();
+});
