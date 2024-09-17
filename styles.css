@@ -1,108 +1,111 @@
-/* General Styles */
+/* General Styling */
 body {
   font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 20px;
+  background-color: #f9f9f9;
 }
 
-h2 {
-  text-align: center;
+/* Routine Section Styling */
+#routine-section {
+  margin-bottom: 20px;
 }
 
-/* Routine Table */
-.routine-section,
-.schedule-section {
+#routine-section table {
   width: 100%;
-  margin-bottom: 30px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
   table-layout: fixed;
+  border-collapse: collapse;
 }
 
-th, td {
+#routine-section th, #routine-section td {
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 8px;
   text-align: center;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
-th {
-  background-color: #f4f4f4;
-  word-wrap: break-word;
-}
-
-/* Adjust the headers to be flexible and prevent overlap */
-th {
-  height: auto;
+#routine-section th {
+  background-color: #f2f2f2;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.time-header {
-  min-width: 70px;
-  white-space: nowrap;
+/* Schedule Section Styling */
+#schedule-section {
+  margin-bottom: 20px;
 }
 
-.time-column {
-  background-color: #f4f4f4;
-  min-width: 70px;
-  white-space: nowrap;
-}
-
-/* Expand vertically when content is too large */
-td[contenteditable="true"] {
-  min-height: 50px;
-  vertical-align: top;
-  word-wrap: break-word;
-}
-
-/* Make sure rows expand when content is larger */
-td {
-  resize: vertical;
-  overflow: auto;
-}
-
-/* To-Do List */
-.todo-section {
+#schedule-section table {
   width: 100%;
-  margin-bottom: 30px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+#schedule-section th, #schedule-section td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#schedule-section th {
+  background-color: #f2f2f2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* To-Do List Section Styling */
+#todo-section {
+  margin-bottom: 20px;
 }
 
 #todo-list {
-  list-style: none;
-  padding-left: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 #todo-list li {
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
 
-.todo-checkbox {
+#todo-list li.completed {
+  text-decoration: line-through;
+  background-color: #d9d9d9;
+}
+
+#new-task {
+  padding: 10px;
+  width: 80%;
   margin-right: 10px;
 }
 
-.todo-text {
-  flex-grow: 1;
+#add-task-btn {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
-.delete-btn {
-  margin-left: 10px;
+#add-task-btn:hover {
+  background-color: #45a049;
 }
 
-#add-task {
-  margin-top: 10px;
+button.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  cursor: pointer;
   padding: 5px 10px;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-  th, td {
-    font-size: 12px;
-  }
+button.delete-btn:hover {
+  background-color: #c0392b;
 }
