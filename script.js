@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   const routineTable = document.getElementById('routine-table');
   const scheduleTable = document.getElementById('schedule-table');
+  const todoList = document.getElementById('todo-list');
+  const addTaskBtn = document.getElementById('add-task-btn');
+  const newTaskInput = document.getElementById('new-task');
 
   // Load saved data from localStorage for Routine Section
   function loadRoutineData() {
@@ -46,7 +49,52 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem(cellId, target.innerText);
   });
 
-  // Load saved data on page load
-  loadRoutineData();
-  loadScheduleData();
-});
+  // Load saved tasks from localStorage
+  function loadTasks() {
+    const savedTasks = JSON.parse(localStorage.getItem('todoTasks')) || [];
+    savedTasks.forEach(task => addTask(task.text, task.completed));
+  }
+
+  // Add a new task
+  function addTask(text, completed = false) {
+    const li = document.createElement('li');
+    li.innerText = text;
+    if (completed) {
+      li.classList.add('completed');
+    }
+
+    // Create delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.innerText = 'Delete';
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.addEventListener('click', function () {
+      li.remove();
+      saveTasks();
+    });
+
+    li.appendChild(deleteBtn);
+
+    // Mark task as completed
+    li.addEventListener('click', function () {
+      li.classList.toggle('completed');
+      saveTasks();
+    });
+
+    todoList.appendChild(li);
+    saveTasks();
+  }
+
+  // Save tasks to localStorage
+  function saveTasks() {
+    const tasks = [];
+    todoList.querySelectorAll('li').forEach(li => {
+      tasks.push({
+        text: li.firstChild.textContent,
+        completed: li.classList.contains('completed')
+      });
+    });
+    localStorage.setItem('todoTasks', JSON.stringify(tasks));
+  }
+
+  // Add new task button event
+  addTaskBtn
